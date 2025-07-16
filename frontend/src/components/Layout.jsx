@@ -1,5 +1,7 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate, Outlet } from "react-router-dom";
 import React from "react";
+import { useAuth } from "../contexts/useAuth";
+import { useEffect, useState } from "react";
 import { Menu, ChevronLeft, ChevronRight, User } from "lucide-react";
 import { Button } from "./ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
@@ -26,10 +28,30 @@ import {
   LogOut,
 } from "lucide-react";
 
-const Layout = ({ children }) => {
+const Layout = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user, logout, loading } = useAuth();
+  const [userInitials, setUserInitials] = useState('US');
   const currentPath = location.pathname;
   const [isCollapsed, setIsCollapsed] = React.useState(false);
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
+
+  useEffect(() => {
+    if (user?.name) {
+      const names = user.name.split(' ');
+      const initials = names
+        .map(name => name[0])
+        .join('')
+        .toUpperCase()
+        .substring(0, 2);
+      setUserInitials(initials);
+    }
+  }, [user]);
 
   const navigationItems = [
     { path: "/", label: "Dashboard", icon: <BarChart3 className="w-4 h-4" /> },
@@ -88,19 +110,35 @@ const Layout = ({ children }) => {
         <div className="flex items-center">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <button className="rounded-full focus:outline-none">
-                <Avatar className="size-8 cursor-pointer">
-                  <AvatarImage src="/avatars/01.png" className="rounded-none" alt="@admin" />
-                  <AvatarFallback>AD</AvatarFallback>
+              <button className="rounded-full focus:outline-none flex items-center">
+                <Avatar className="size-8 cursor-pointer bg-blue-600">
+                  <AvatarImage src={user?.avatar} alt={user?.name} />
+                  <AvatarFallback>{userInitials}</AvatarFallback>
                 </Avatar>
+                {!isCollapsed && user && (
+                  <span className="ml-2 text-sm font-medium text-white md:hidden">
+                    {user.name || 'Kullanıcı'}
+                  </span>
+                )}
               </button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-48 bg-gray-900 border-gray-700 text-gray-200">
+            <DropdownMenuContent className="w-56 bg-gray-900 border-gray-700 text-gray-200">
+              <div className="px-2 py-1.5">
+                <p className="text-sm font-medium text-white">{user?.name || 'Kullanıcı'}</p>
+                <p className="text-xs text-gray-400 truncate">{user?.email || ''}</p>
+              </div>
+              <DropdownMenuItem className="flex items-center cursor-pointer px-3 py-2 text-sm hover:bg-gray-800 focus:bg-gray-800 focus:text-white">
+                <User className="mr-2 h-4 w-4" />
+                <span>Profil</span>
+              </DropdownMenuItem>
               <DropdownMenuItem className="flex items-center cursor-pointer px-3 py-2 text-sm hover:bg-gray-800 focus:bg-gray-800 focus:text-white">
                 <Settings className="mr-2 h-4 w-4" />
                 <span>Ayarlar</span>
               </DropdownMenuItem>
-              <DropdownMenuItem className="flex items-center cursor-pointer px-3 py-2 text-sm hover:bg-gray-800 focus:bg-gray-800 focus:text-white text-red-400 hover:text-red-300">
+              <DropdownMenuItem 
+                onClick={handleLogout}
+                className="flex items-center cursor-pointer px-3 py-2 text-sm hover:bg-gray-800 focus:bg-gray-800 focus:text-white text-red-400 hover:text-red-300"
+              >
                 <LogOut className="mr-2 h-4 w-4" />
                 <span>Çıkış Yap</span>
               </DropdownMenuItem>
@@ -157,14 +195,14 @@ const Layout = ({ children }) => {
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <div className={`flex items-center ${!isCollapsed ? 'w-full' : 'justify-center'}`}>
-                    <Avatar className="size-10 cursor-pointer">
-                      <AvatarImage src="/avatars/01.png" alt="@admin" />
-                      <AvatarFallback>AD</AvatarFallback>
+                    <Avatar className="size-10 cursor-pointer bg-blue-600">
+                      <AvatarImage src={user?.avatar} alt={user?.name} />
+                      <AvatarFallback>{userInitials}</AvatarFallback>
                     </Avatar>
-                    {!isCollapsed && (
+                    {!isCollapsed && user && (
                       <div className="ml-3 overflow-hidden">
-                        <p className="text-sm font-medium text-white truncate">Admin</p>
-                        <p className="text-xs text-gray-400 truncate">admin@example.com</p>
+                        <p className="text-sm font-medium text-white truncate">{user.name || 'Kullanıcı'}</p>
+                        <p className="text-xs text-gray-400 truncate">{user.email || ''}</p>
                       </div>
                     )}
                   </div>
@@ -175,8 +213,8 @@ const Layout = ({ children }) => {
                   sideOffset={5}
                 >
                   <div className="px-2 py-1.5">
-                    <p className="text-sm font-medium text-white">Admin</p>
-                    <p className="text-xs text-gray-400 truncate">admin@example.com</p>
+                    <p className="text-sm font-medium text-white">{user?.name || 'Kullanıcı'}</p>
+                    <p className="text-xs text-gray-400 truncate">{user?.email || ''}</p>
                   </div>
                   <DropdownMenuSeparator className="bg-gray-700" />
                   <DropdownMenuItem className="flex items-center cursor-pointer px-2 py-2 text-sm hover:bg-gray-800 focus:bg-gray-800 focus:text-white">
@@ -188,7 +226,10 @@ const Layout = ({ children }) => {
                     <span>Ayarlar</span>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator className="bg-gray-700" />
-                  <DropdownMenuItem className="flex items-center cursor-pointer px-2 py-2 text-sm text-red-400 hover:bg-gray-800 hover:text-red-300">
+                  <DropdownMenuItem 
+                    onClick={handleLogout}
+                    className="flex items-center cursor-pointer px-2 py-2 text-sm text-red-400 hover:bg-gray-800 hover:text-red-300"
+                  >
                     <LogOut className="mr-2 h-4 w-4" />
                     <span>Çıkış Yap</span>
                   </DropdownMenuItem>
@@ -198,21 +239,24 @@ const Layout = ({ children }) => {
           </div>
         </div>
 
-        {/* Main */}
-        <div 
-          className={`flex-1 flex flex-col min-h-0 w-full transition-all duration-300 ${
-            isCollapsed ? 'md:ml-20' : 'md:ml-64'
-          }`}
-        >
-          <main className="flex-1 overflow-auto p-4 md:p-6 w-full">
-            <div className="max-w-full overflow-x-hidden">
-              {children}
-            </div>
-          </main>
+        {/* Main Content */}
+        {loading ? (
+          <FullPageSkeleton />
+        ) : (
+          <div 
+            className={`flex-1 flex flex-col min-h-0 w-full transition-all duration-300 ${
+              isCollapsed ? 'md:ml-20' : 'md:ml-64'
+            }`}
+          >
+            <main className="flex-1 overflow-auto p-4 md:p-6 w-full">
+              <div className="max-w-full overflow-x-hidden">
+                <Outlet />
+              </div>
+            </main>
 
-          {/* Footer */}
-          <footer className="bg-gray-950 border-t border-gray-800 mt-auto">
-            <div className="px-4 sm:px-6 py-6">
+            {/* Footer */}
+            <footer className="bg-gray-950 border-t border-gray-800 mt-auto">
+              <div className="px-4 sm:px-6 py-6">
               <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                 <div>
                   <h3 className="text-white font-semibold mb-4">NamıkAI</h3>
@@ -320,7 +364,7 @@ const Layout = ({ children }) => {
               <div className="border-t border-gray-800 mt-6 sm:mt-8 pt-6 sm:pt-8">
                 <div className="flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0">
                   <p className="text-gray-400 text-xs sm:text-sm">
-                    © 2025 Namık AI Studio. Tüm hakları saklıdır.
+                    2025 Namık AI Studio. Tüm hakları saklıdır.
                   </p>
                   <div className="flex items-center space-x-4 text-xs sm:text-sm">
                     <span className="text-gray-400">Powered by</span>
@@ -332,7 +376,8 @@ const Layout = ({ children }) => {
               </div>
             </div>
           </footer>
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );
