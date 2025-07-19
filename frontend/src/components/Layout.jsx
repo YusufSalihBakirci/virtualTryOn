@@ -66,10 +66,15 @@ const Layout = () => {
       icon: <Package className="w-4 h-4" />,
     },
     {
+      path: "/products",
+      label: "Ürünler",
+      icon: <Package className="w-4 h-4" />
+    },
+    {
       path: "/analytics",
       label: "Analitik",
       icon: <TrendingUp className="w-4 h-4" />,
-    },
+    }, 
   ];
 
   return (
