@@ -5,7 +5,7 @@ namespace FaceGlassesApi.Models
     public class GoogleGeminiApiConfiguration
     {
         [Required]
-        public string ApiKey { get; set; } = string.Empty;
+        public string ApiKey { get; set; } = Environment.GetEnvironmentVariable("GEMINI_API_KEY") ?? string.Empty;
 
         [Required]
         public string ModelName { get; set; } = "gemini-2.0-flash-exp";
