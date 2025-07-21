@@ -4,6 +4,7 @@ using FaceGlassesApi.Services;
 using MongoDB.Driver;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.Extensions.Options;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -95,4 +96,46 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+// Veritabanı ve Collection kontrolü
+await EnsureDatabaseCollections(app);
+
 app.Run();
+
+static async Task EnsureDatabaseCollections(WebApplication app)
+{
+    using var scope = app.Services.CreateScope();
+    var database = scope.ServiceProvider.GetRequiredService<IMongoDatabase>();
+    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+    var mongoConfig = scope.ServiceProvider.GetRequiredService<IOptions<MongoDbConfiguration>>().Value;
+    
+    try
+    {
+        // Mevcut collection'ları listele
+        var collections = await database.ListCollectionNamesAsync();
+        var collectionList = await collections.ToListAsync();
+        
+        if (!collectionList.Contains(mongoConfig.UsersCollectionName))
+        {
+            // Users collection oluştur
+            await database.CreateCollectionAsync(mongoConfig.UsersCollectionName);
+            logger.LogInformation("'{CollectionName}' collection oluşturuldu", mongoConfig.UsersCollectionName);
+            
+            // Index oluştur (email için unique index)
+            var usersCollection = database.GetCollection<User>(mongoConfig.UsersCollectionName);
+            var indexKeys = Builders<User>.IndexKeys.Ascending(x => x.Email);
+            var indexOptions = new CreateIndexOptions { Unique = true };
+            await usersCollection.Indexes.CreateOneAsync(new CreateIndexModel<User>(indexKeys, indexOptions));
+            logger.LogInformation("Email unique index oluşturuldu");
+        }
+        else
+        {
+            logger.LogInformation("'{CollectionName}' collection zaten mevcut", mongoConfig.UsersCollectionName);
+        }
+        
+        logger.LogInformation("Veritabanı: {DatabaseName}", database.DatabaseNamespace.DatabaseName);
+    }
+    catch (Exception ex)
+    {
+        logger.LogError(ex, "Veritabanı collection kontrolü sırasında hata oluştu");
+    }
+}
