@@ -96,6 +96,7 @@ const Login = () => {
     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-950 p-4">
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
+          <img src="/logo.png" alt="Logo" className="mx-auto w-40 h-40" />
           <CardTitle className="text-2xl font-bold text-center">
             Giriş Yap
           </CardTitle>
@@ -187,28 +188,6 @@ const Login = () => {
             <Button type="submit" className="w-full my-3" disabled={isLoading}>
               {isLoading ? "Giriş yapılıyor..." : "Giriş Yap"}
             </Button>
-
-            <div className="relative my-6">
-              <div className="flex items-center w-full justify-center">
-                <span className="bg-white dark:bg-card px-2 text-xs uppercase text-muted-foreground">
-                  VEYA
-                </span>
-              </div>
-            </div>
-
-            <Button variant="outline" type="button" className="w-full gap-2">
-              <FcGoogle className="h-4 w-4" />
-              Google ile Giriş Yap
-            </Button>
-            <div className="text-center text-sm">
-              Hesabınız yok mu?{" "}
-              <Link
-                to="/register"
-                className="font-medium text-primary hover:underline"
-              >
-                Kayıt Ol
-              </Link>
-            </div>
           </CardFooter>
         </form>
       </Card>

@@ -7,10 +7,9 @@ import Users from "./components/Users";
 import Orders from "./components/Orders";
 import Analytics from "./components/Analytics";
 import Login from "./components/Login";
-import Register from "./components/Register";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Products from "./components/product/Products";
-import "./App.css";
+import "./App.css"; 
 
 function AppContent() {
   const { user, loading } = useAuth();
@@ -22,7 +21,6 @@ function AppContent() {
   return (
     <Routes>
       <Route path="/login" element={user ? <Navigate to="/" replace /> : <Login />} />
-      <Route path="/register" element={user ? <Navigate to="/" replace /> : <Register />} />
       <Route path="/products" element={<Products />} />
       <Route element={<ProtectedRoute />}>
         <Route element={<Layout />}>
