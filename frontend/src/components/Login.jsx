@@ -22,21 +22,29 @@ const hasSQLInjection = (input) => {
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState('');
-  
+  const [error, setError] = useState("");
+
   const handleSubmit = (e) => {
+    // TODO: sonradan axios eklenecek
+    //   try {
+    //     const response = await axios.post('/', { email, password });
+    //     console.log(response.data);
+    //   } catch (error) {
+    //     console.error('Login failed:', error);
+    //   }
+    // };
     e.preventDefault();
-    setError('');
-    
+    setError("");
+
     const formData = new FormData(e.target);
-    const email = formData.get('email') || '';
-    const password = formData.get('password') || '';
-    
+    const email = formData.get("email") || "";
+    const password = formData.get("password") || "";
+
     if (hasSQLInjection(email) || hasSQLInjection(password)) {
-      setError('Geçersiz karakterler içeren bir giriş yaptınız.');
+      setError("Geçersiz karakterler içeren bir giriş yaptınız.");
       return;
     }
-    
+
     window.location.href = "/";
   };
 
@@ -78,7 +86,7 @@ const Login = () => {
                 <Input
                   id="password"
                   name="password"
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword ? "text" : "password"}
                   placeholder="••••••••"
                   className="w-full pr-10"
                 />
@@ -112,8 +120,7 @@ const Login = () => {
               Giriş Yap
             </Button>
           </CardContent>
-          <CardFooter className="flex flex-col space-y-4">
-          </CardFooter>
+          <CardFooter className="flex flex-col space-y-4"></CardFooter>
         </form>
       </Card>
     </div>
