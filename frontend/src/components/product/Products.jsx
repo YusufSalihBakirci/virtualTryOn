@@ -31,7 +31,7 @@ const columns = [
   { accessorKey: "active", header: "Durum" },
 ];
 
-const XML_URL = "/api/products"; // Buraya gerçek XML URL'ini yaz
+const XML_URL = "/api/products";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -89,7 +89,7 @@ const Products = () => {
                 <NavigationMenuItem>
                   <NavigationMenuLink asChild>
                     <Link
-                      to="/admin"
+                      to="/"
                       className="text-primary font-medium bg-gray-800/50 hover:bg-gray-700/70 px-4 py-2 rounded-md transition-colors"
                     >
                       Admin Panel

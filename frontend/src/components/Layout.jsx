@@ -1,10 +1,10 @@
-import { Link, useLocation, useNavigate, Outlet } from "react-router-dom";
-import React from "react";
-import { useAuth } from "../contexts/useAuth";
-import { useEffect, useState } from "react";
-import { Menu, ChevronLeft, ChevronRight, User } from "lucide-react";
+import { Link, useLocation, Outlet } from "react-router-dom";
+import React, { useState } from "react";
+import { Menu, ChevronLeft, ChevronRight, User, Settings, LogOut } from "lucide-react";
 import { Button } from "./ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Avatar, AvatarFallback } from "./ui/avatar";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
+import { BarChart3, Users as UsersIcon, Package, TrendingUp } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,46 +12,11 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator,
 } from "./ui/dropdown-menu";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "./ui/sheet";
-import {
-  Settings,
-  BarChart3,
-  Users as UsersIcon,
-  Package,
-  TrendingUp,
-  LogOut,
-} from "lucide-react";
 
 const Layout = () => {
   const location = useLocation();
-  const navigate = useNavigate();
-  const { user, logout, loading } = useAuth();
-  const [userInitials, setUserInitials] = useState('US');
   const currentPath = location.pathname;
-  const [isCollapsed, setIsCollapsed] = React.useState(false);
-
-  const handleLogout = () => {
-    logout();
-    navigate('/login');
-  };
-
-  useEffect(() => {
-    if (user?.name) {
-      const names = user.name.split(' ');
-      const initials = names
-        .map(name => name[0])
-        .join('')
-        .toUpperCase()
-        .substring(0, 2);
-      setUserInitials(initials);
-    }
-  }, [user]);
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   const navigationItems = [
     { path: "/", label: "Dashboard", icon: <BarChart3 className="w-4 h-4" /> },
@@ -117,21 +82,21 @@ const Layout = () => {
             <DropdownMenuTrigger asChild>
               <button className="rounded-full focus:outline-none flex items-center">
                 <Avatar className="size-8 cursor-pointer bg-blue-600">
-                  <AvatarImage src={user?.avatar} alt={user?.name} />
-                  <AvatarFallback>{userInitials}</AvatarFallback>
+                  <AvatarFallback>NA</AvatarFallback>
                 </Avatar>
-                {!isCollapsed && user && (
+                {!isCollapsed && (
                   <span className="ml-2 text-sm font-medium text-white md:hidden">
-                    {user.name || 'Kullanıcı'}
+                    Admin
                   </span>
                 )}
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56 bg-gray-900 border-gray-700 text-gray-200">
               <div className="px-2 py-1.5">
-                <p className="text-sm font-medium text-white">{user?.name || 'Kullanıcı'}</p>
-                <p className="text-xs text-gray-400 truncate">{user?.email || ''}</p>
+                <p className="text-sm font-medium text-white">Admin Kullanıcı</p>
+                <p className="text-xs text-gray-400 truncate">admin@namikai.com</p>
               </div>
+              <DropdownMenuSeparator className="bg-gray-700" />
               <DropdownMenuItem className="flex items-center cursor-pointer px-3 py-2 text-sm hover:bg-gray-800 focus:bg-gray-800 focus:text-white">
                 <User className="mr-2 h-4 w-4" />
                 <span>Profil</span>
@@ -140,8 +105,8 @@ const Layout = () => {
                 <Settings className="mr-2 h-4 w-4" />
                 <span>Ayarlar</span>
               </DropdownMenuItem>
+              <DropdownMenuSeparator className="bg-gray-700" />
               <DropdownMenuItem 
-                onClick={handleLogout}
                 className="flex items-center cursor-pointer px-3 py-2 text-sm hover:bg-gray-800 focus:bg-gray-800 focus:text-white text-red-400 hover:text-red-300"
               >
                 <LogOut className="mr-2 h-4 w-4" />
@@ -199,18 +164,19 @@ const Layout = () => {
             <div className={`p-4 border-t border-gray-800 ${isCollapsed ? 'flex justify-center' : ''}`}>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <div className={`flex items-center ${!isCollapsed ? 'w-full' : 'justify-center'}`}>
-                    <Avatar className="size-10 cursor-pointer bg-blue-600">
-                      <AvatarImage src={user?.avatar} alt={user?.name} />
-                      <AvatarFallback>{userInitials}</AvatarFallback>
-                    </Avatar>
-                    {!isCollapsed && user && (
-                      <div className="ml-3 overflow-hidden">
-                        <p className="text-sm font-medium text-white truncate">{user.name || 'Kullanıcı'}</p>
-                        <p className="text-xs text-gray-400 truncate">{user.email || ''}</p>
-                      </div>
-                    )}
-                  </div>
+                  <button className={`w-full flex items-center ${isCollapsed ? 'justify-center' : 'justify-between'} p-2 rounded-md hover:bg-gray-800 text-gray-300 hover:text-white`}>
+                    <div className="flex items-center">
+                      <Avatar className="h-8 w-8">
+                        <AvatarFallback>NA</AvatarFallback>
+                      </Avatar>
+                      {!isCollapsed && (
+                        <div className="ml-3 text-left">
+                          <p className="text-sm font-medium text-white">Admin Kullanıcı</p>
+                          <p className="text-xs text-gray-400">admin@namikai.com</p>
+                        </div>
+                      )}
+                    </div>
+                  </button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent 
                   className="w-56 bg-gray-900 border-gray-700 text-gray-200"
@@ -218,8 +184,8 @@ const Layout = () => {
                   sideOffset={5}
                 >
                   <div className="px-2 py-1.5">
-                    <p className="text-sm font-medium text-white">{user?.name || 'Kullanıcı'}</p>
-                    <p className="text-xs text-gray-400 truncate">{user?.email || ''}</p>
+                    <p className="text-sm font-medium text-white">Admin Kullanıcı</p>
+                    <p className="text-xs text-gray-400 truncate">admin@namikai.com</p>
                   </div>
                   <DropdownMenuSeparator className="bg-gray-700" />
                   <DropdownMenuItem className="flex items-center cursor-pointer px-2 py-2 text-sm hover:bg-gray-800 focus:bg-gray-800 focus:text-white">
@@ -232,7 +198,6 @@ const Layout = () => {
                   </DropdownMenuItem>
                   <DropdownMenuSeparator className="bg-gray-700" />
                   <DropdownMenuItem 
-                    onClick={handleLogout}
                     className="flex items-center cursor-pointer px-2 py-2 text-sm text-red-400 hover:bg-gray-800 hover:text-red-300"
                   >
                     <LogOut className="mr-2 h-4 w-4" />
@@ -245,19 +210,16 @@ const Layout = () => {
         </div>
 
         {/* Main Content */}
-        {loading ? (
-          <FullPageSkeleton />
-        ) : (
-          <div 
-            className={`flex-1 flex flex-col min-h-0 w-full transition-all duration-300 ${
-              isCollapsed ? 'md:ml-20' : 'md:ml-64'
-            }`}
-          >
-            <main className="flex-1 overflow-auto p-4 md:p-6 w-full">
-              <div className="max-w-full overflow-x-hidden">
-                <Outlet />
-              </div>
-            </main>
+        <div 
+          className={`flex-1 flex flex-col min-h-0 w-full transition-all duration-300 ${
+            isCollapsed ? 'md:ml-20' : 'md:ml-64'
+          }`}
+        >
+          <main className="flex-1 overflow-auto p-4 md:p-6 w-full">
+            <div className="max-w-full overflow-x-hidden">
+              <Outlet />
+            </div>
+          </main>
 
             {/* Footer */}
             <footer className="bg-gray-950 border-t border-gray-800 mt-auto">
@@ -381,8 +343,7 @@ const Layout = () => {
               </div>
             </div>
           </footer>
-          </div>
-        )}
+        </div>
       </div>
     </div>
   );
