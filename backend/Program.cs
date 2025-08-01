@@ -5,12 +5,22 @@ using FaceGlassesApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Yeni konfigürasyon sýnýfýný ekle
+// Yeni konfigï¿½rasyon sï¿½nï¿½fï¿½nï¿½ ekle
 builder.Services.Configure<GoogleGeminiApiConfiguration>(builder.Configuration.GetSection("GoogleGeminiApi"));
 
 builder.Services.AddHttpClient();
 
 builder.Services.AddScoped<GeminiProService>();
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 
 
 builder.Services.AddControllers();
@@ -22,8 +32,9 @@ var app = builder.Build();
 
 
 app.UseHttpsRedirection();
-
+app.UseStaticFiles();
 app.UseAuthorization();
+app.UseCors();
 
 app.MapControllers();
 
