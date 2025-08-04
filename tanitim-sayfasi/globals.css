@@ -1,0 +1,22 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: "Manrope", sans-serif;
+}
+
+.shadow-top {
+    box-shadow: 0 -0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.btn-outline-primary {
+    border: none;
+}
+
+.btn-outline-primary:hover{
+    color: white;
+}
+
+.nav-item.btn.btn-outline-primary.p-0 .nav-link:hover {
+    color: white !important;
+}
