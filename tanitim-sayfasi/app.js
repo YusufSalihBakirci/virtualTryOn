@@ -22,7 +22,8 @@ const slides = [
   },
 ];
 
-const works = [{}];
+// TODO : how to works kısmı js ile döndürülebilir ilerde şimdilik kalsın. 
+// const works = [{}];
 
 const wrapper = document.querySelector(".swiper-wrapper");
 
