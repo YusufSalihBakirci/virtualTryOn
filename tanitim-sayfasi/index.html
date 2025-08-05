@@ -5,10 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>VirtualTryOn</title>
     <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
-    />
-    <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
@@ -26,7 +22,10 @@
   </head>
   <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <nav
+      id="navbar"
+      class="navbar fixed-top navbar-expand-lg navbar-light bg-light shadow-sm page-load"
+    >
       <div class="container">
         <a class="navbar-brand" href="#">VirtualTryOn</a>
         <button
@@ -75,7 +74,7 @@
     </nav>
 
     <!-- Ana içerik -->
-    <main class="container py-4">
+    <main class="container py-4 mt-5 fade-in">
       <div class="row">
         <div class="col-md-12">
           <div class="swiper">
@@ -87,7 +86,7 @@
               <div class="swiper-slide">Fotoğraf 3</div>
               ...
             </div>
-            
+
             <!-- ileri geri düğmesi -->
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
@@ -96,59 +95,61 @@
       </div>
     </main>
     <!-- How it works -->
-    <div class="container">
+    <div class="container slide-in-left">
       <div class="row">
         <div class="col-md-12">
-          <h2 class="hiw-title">How It Works</h2>
+          <h2 class="hiw-title">Nasıl Çalışır?</h2>
           <p>
-            Our AI-powered system analyzes your facial features and style
-            preferences to recommend the perfect eyeglasses.
+            Yapay zeka destekli sistemimiz, yüz hatlarınızı ve stil
+            tercihlerinizi analiz ederek mükemmel gözlüğü önerir.
           </p>
           <div class="row row-cols-1 row-cols-md-3 g-4">
             <div class="col">
-              <div class="card shadow-md card-scale">
+              <div class="card shadow-md card-scale stagger-item">
                 <div class="card-body">
                   <!-- TODO : kütüphane değişecek -->
-                  <i class="bi bi-camera"></i>
-                  <h5 class="card-title" style="font-weight: bold">
-                    Capture Your Look
+                  <i class="fas fa-camera"></i>
+                  <h5 class="card-title mt-2" style="font-weight: bold">
+                    Google Feed Entegrasyonu
                   </h5>
                   <p class="card-text text-muted">
-                    This is a longer card with supporting text below as a
-                    natural lead-in to additional content. This content is a
-                    little bit longer.
+                    Google Feed üzerinden elde edilen güncel moda trendleri,
+                    popüler ürünler ve kullanıcı ilgi alanları sistemimize
+                    entegre edilir. Böylece size en yeni ve en çok tercih edilen
+                    gözlük modelleri önerilir.
                   </p>
                 </div>
               </div>
             </div>
             <div class="col">
-              <div class="card shadow-md card-scale">
+              <div class="card shadow-md card-scale stagger-item">
                 <div class="card-body">
                   <!-- TODO : kütüphane değişecek -->
-                  <i class="bi bi-rulers"></i>
-                  <h5 class="card-title" style="font-weight: bold">
-                    AI-Powered Analysis
+                  <i class="fas fa-ruler"></i>
+                  <h5 class="card-title mt-2" style="font-weight: bold">
+                    Gerçek Zamanlı Yüz Analizi
                   </h5>
                   <p class="card-text text-muted">
-                    This is a longer card with supporting text below as a
-                    natural lead-in to additional content. This content is a
-                    little bit longer.
+                    Kameranızı kullanarak yüz hatlarınızı ve ölçülerinizi anlık
+                    olarak tarıyoruz. Gelişmiş görüntü işleme teknolojimiz
+                    sayesinde size en uygun çerçeve tipi, burun köprüsü
+                    yüksekliği ve gözlük boyutu belirlenir.
                   </p>
                 </div>
               </div>
             </div>
             <div class="col">
-              <div class="card shadow-md card-scale">
+              <div class="card shadow-md card-scale stagger-item">
                 <div class="card-body">
                   <!-- TODO : kütüphane değişecek -->
-                  <i class="bi bi-pencil"></i>
-                  <h5 class="card-title" style="font-weight: bold">
-                    Personalized Recommendations
+                  <i class="fas fa-wand-magic-sparkles"></i>
+                  <h5 class="card-title mt-2" style="font-weight: bold">
+                    Kişiselleştirilmiş Gözlük Tavsiyesi
                   </h5>
                   <p class="card-text text-muted">
-                    This is a longer card with supporting text below as a
-                    natural lead-in to additional content. This content is a
-                    little bit longer.
+                    Yapay zeka, yüz şekliniz ve stilinize göre en uygun
+                    gözlükleri önerir. Size özel ve benzersiz bir kullanıcı
+                    deneyimi sunar.
                   </p>
                 </div>
               </div>
@@ -157,11 +158,50 @@
         </div>
       </div>
     </div>
+
+    <!-- Explore Our Collection -->
+    <div class="container mt-4">
+      <h2 class="text-left mb-5">Koleksiyonumuzu Keşfedin</h2>
+      <div class="row g-2 text-center">
+        <div class="col-6">
+          <img
+            src="/TempImages/person3.jpg"
+            class="img-fluid w-75 rounded rounded-2 object-fit-cover img-scale"
+            style="height: 300px"
+            alt="Person 1"
+          />
+        </div>
+        <div class="col-6">
+          <img
+            src="/TempImages/person2.jpg"
+            class="img-fluid w-75 rounded rounded-2 object-fit-cover img-scale"
+            style="height: 300px"
+            alt="Person 2"
+          />
+        </div>
+      </div>
+      <div class="row g-2 mt-3">
+        <div class="col-6">
+          <img
+            src="/TempImages/glasses3.webp"
+            class="img-fluid w-75 object-fit-contain img-scale"
+            style="height: 300px"
+            alt="Glasses 1"
+          />
+        </div>
+        <div class="col-6">
+          <img
+            src="/TempImages/glasses2.webp"
+            class="img-fluid w-100 rounded object-fit-contain img-scale"
+            style="height: 300px"
+            alt="Glasses 2"
+          />
+        </div>
+      </div>
+    </div>
+
     <!-- Footer -->
-    <footer
-      class="bg-light position-fixed bottom-0 shadow-top text-dark text-center py-3"
-      style="left: 0; right: 0"
-    >
+    <footer class="bg-light shadow-top text-dark text-center py-3 mt-5">
       <small class="mb-0">2025 VirtualTryOn. Tüm hakları saklıdır.</small>
     </footer>
 
@@ -173,6 +213,12 @@
     ></script>
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- Custom JS -->
     <script src="app.js"></script>
+    <!-- Font Awesome -->
+    <script
+      src="https://kit.fontawesome.com/f2d63d7d73.js"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

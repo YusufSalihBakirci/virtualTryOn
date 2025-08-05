@@ -22,7 +22,7 @@ const slides = [
   },
 ];
 
-// TODO : how to works kısmı js ile döndürülebilir ilerde şimdilik kalsın. 
+// TODO : how to works kısmı js ile döndürülebilir ilerde şimdilik kalsın.
 // const works = [{}];
 
 const wrapper = document.querySelector(".swiper-wrapper");
@@ -57,4 +57,20 @@ const swiper = new Swiper(".swiper", {
   scrollbar: {
     el: ".swiper-scrollbar",
   },
+});
+
+// Navbar gizleme ve gösterme işlevi
+document.addEventListener("DOMContentLoaded", () => {
+  let lastScroll = window.pageYOffset;
+  const navbar = document.getElementById("navbar");
+
+  window.addEventListener("scroll", () => {
+    const currentScroll = window.pageYOffset;
+    if (currentScroll > lastScroll) {
+      navbar.classList.add("nav-hidden");
+    } else {
+      navbar.classList.remove("nav-hidden");
+    }
+    lastScroll = currentScroll;
+  });
 });

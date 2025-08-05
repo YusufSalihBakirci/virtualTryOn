@@ -1,12 +1,20 @@
 body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
     font-family: "Manrope", sans-serif;
+}
+
+main {
+    padding-top: 4rem; /* space for fixed navbar */
+    padding-bottom: 2rem;
 }
 
 .shadow-top {
     box-shadow: 0 -0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+#navbar {
+    transition: transform 0.3s ease-in-out;
+}
+.nav-hidden {
+    transform: translateY(-100%);
 }
 
 .btn-outline-primary {
@@ -26,7 +34,15 @@ body {
 }
 .card-scale {
     transition: transform 0.3s ease-in-out;
+    min-height: 200px;
 }
 .card-scale:hover {
     transform: scale(1.03);
+}
+
+.img-scale {
+    transition: transform 0.3s ease-in-out;
+}
+.img-scale:hover {
+    transform: scale(1.05);
 }
