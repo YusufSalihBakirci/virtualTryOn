@@ -27,6 +27,12 @@
       class="navbar fixed-top navbar-expand-lg navbar-light bg-light shadow-sm page-load"
     >
       <div class="container">
+        <img
+          src="/TempImages/logo-textless.png"
+          alt="Logo"
+          class="navbar-brand"
+          style="width: 40px; height: 40px"
+        />
         <a class="navbar-brand" href="#">VirtualTryOn</a>
         <button
           class="navbar-toggler"
@@ -160,76 +166,104 @@
     </div>
 
     <!-- Explore Our Collection -->
-    <div class="container mt-4">
+    <div class="container mt-4 collection-container">
       <h2 class="text-left mb-5 fw-bold">Koleksiyonumuzu Keşfedin</h2>
       <div class="row g-2 text-center">
-        <div class="col-6">
+        <div class="col-6 mb-3 mb-md-0 px-2 px-md-3">
           <img
             src="/TempImages/person3.jpg"
-            class="img-fluid w-75 rounded rounded-2 object-fit-cover img-scale"
-            style="height: 300px"
+            class="img-fluid w-100 w-md-75 rounded rounded-2 img-scale person-img"
+            style="height: 300px; max-height: 200px; object-fit: contain; object-position: center;"
             alt="Person 1"
           />
         </div>
-        <div class="col-6">
+        <div class="col-6 mb-3 mb-md-0 px-2 px-md-3">
           <img
             src="/TempImages/person2.jpg"
-            class="img-fluid w-75 rounded rounded-2 object-fit-cover img-scale"
-            style="height: 300px"
+            class="img-fluid w-100 w-md-75 rounded rounded-2 img-scale person-img"
+            style="height: 300px; max-height: 200px; object-fit: contain; object-position: center;"
             alt="Person 2"
           />
         </div>
       </div>
-      <div class="row g-2 mt-3">
-        <div class="col-6">
+      <div class="row g-2 mt-3 text-center">
+        <div class="col-6 px-2 px-md-3">
           <img
             src="/TempImages/glasses3.webp"
-            class="img-fluid w-75 object-fit-contain img-scale"
-            style="height: 300px"
+            class="img-fluid w-100 w-md-75 rounded img-scale glasses-img"
+            style="height: 300px; max-height: 200px; object-fit: contain; object-position: center;"
             alt="Glasses 1"
           />
         </div>
-        <div class="col-6">
+        <div class="col-6 px-2 px-md-3">
           <img
             src="/TempImages/glasses2.webp"
-            class="img-fluid w-100 rounded object-fit-contain img-scale"
-            style="height: 300px"
+            class="img-fluid w-100 w-md-75 rounded img-scale glasses-img"
+            style="height: 300px; max-height: 200px; object-fit: contain; object-position: center;"
             alt="Glasses 2"
           />
         </div>
       </div>
     </div>
-<!-- Contact -->
-<div class="container my-5">
-  <div class="card p-4 shadow">
-    <div class="row align-items-center">
-      <!-- Sol taraf -->
-      <div class="col-md-6 text-center mb-4 mb-md-0">
-        <h1 class="mb-4 fw-bold">İletişim</h1>
-        <img src="/TempImages/logo.png" alt="Logo" class="img-fluid object-fit-cover w-50 h-50 my-5">
-      </div>
+    <!-- Contact -->
+    <div class="container my-5">
+      <div class="card p-4 border-0">
+        <div class="row align-items-center">
+          <!-- Sol taraf -->
+          <div class="col-md-6 mb-4 mb-md-0">
+            <h2 class="mb-4 fw-bold text-left">İletişim</h2>
+            <img
+              src="/TempImages/logo.png"
+              alt="Logo"
+              class="img-fluid object-fit-cover w-50 h-50 my-5 d-block text-left"
+            />
+          </div>
 
-      <!-- Sağ taraf -->
-      <div class="col-md-6">
-        <form>
-          <div class="mb-3">
-            <label for="isim" class="form-label">İsim</label>
-            <input type="text" class="form-control" id="isim" placeholder="Adınız">
+          <!-- Sağ taraf -->
+          <div class="col-md-6">
+            <form onsubmit="event.preventDefault()">
+              <div class="row mb-3 align-items-center">
+                <label for="isim" class="col-sm-2 col-form-label">İsim</label>
+                <div class="col-sm-10">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="isim"
+                    placeholder="Adınız"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="row mb-3 align-items-center">
+                <label for="soyisim" class="col-sm-2 col-form-label">Soyisim</label>
+                <div class="col-sm-10">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="soyisim"
+                    placeholder="Soyadınız"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="row mb-3 align-items-center">
+                <label for="email" class="col-sm-2 col-form-label">E-posta</label>
+                <div class="col-sm-10">
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    placeholder="email@ornek.com"
+                    required
+                  />
+                </div>
+              </div>
+              <button type="submit" class="btn btn-success w-100 p-3">Gönder</button>
+            </form>
           </div>
-          <div class="mb-3">
-            <label for="soyisim" class="form-label">Soyisim</label>
-            <input type="text" class="form-control" id="soyisim" placeholder="Soyadınız">
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label">E-posta</label>
-            <input type="email" class="form-control" id="email" placeholder="email@ornek.com">
-          </div>
-          <button type="submit" class="btn btn-primary">Gönder</button>
-        </form>
+        </div>
       </div>
     </div>
-  </div>
-</div>
     <!-- Footer -->
     <footer class="bg-light shadow-top text-dark text-center py-3 mt-5">
       <small class="mb-0">2025 VirtualTryOn. Tüm hakları saklıdır.</small>
@@ -250,5 +284,7 @@
       src="https://kit.fontawesome.com/f2d63d7d73.js"
       crossorigin="anonymous"
     ></script>
+    <!-- axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </body>
 </html>
