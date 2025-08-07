@@ -1,8 +1,5 @@
-// Sanal Deneme Modal Bileşeni
-// Herhangi bir web sitesine eklenebilir
 
 (function() {
-  // --- CSS ---
   const styles = `
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
     .virtual-tryon-modal {
@@ -105,7 +102,6 @@
     document.head.appendChild(styleSheet);
   }
 
-  // --- Ürünler (Kendi görsellerinle) ---
 
   const products = [
     { id: 1, name: 'Glasses 1', image: 'https://static.ticimax.cloud/cdn-cgi/image/width=1101,quality=85,format=webp/37382/uploads/urunresimleri/buyuk/gucci-1604s-002-53-22-unisex-gunes-goz-eb9572.jpg' },
@@ -113,14 +109,12 @@
     { id: 3, name: 'Glasses 3', image: 'https://static.ticimax.cloud/cdn-cgi/image/width=1101,quality=85,format=webp/37382/uploads/urunresimleri/buyuk/tom-ford-tf1026-01b-61-12-unisexerkek--99d-a9.jpg' }
   ];
 
-  // --- Modal State ---
   const state = {
     modal: null,
     selectedFile: null,
     selectedProduct: null
   };
 
-  // --- Modal HTML oluşturucu ---
   function createModal() {
     if (state.modal) state.modal.remove();
     const modal = document.createElement('div');
@@ -170,7 +164,6 @@
     document.body.appendChild(modal);
     state.modal = modal;
 
-    // --- Event binding ---
     document.getElementById('close-btn').onclick = closeModal;
     document.getElementById('upload-area').onclick = function(e) {
       if (e.target.id === 'file-input') return;
@@ -209,7 +202,6 @@
     });
     document.querySelectorAll('.product-item').forEach(item => item.classList.remove('selected'));
     updateTryButton();
-    // Tekrar Dene butonunu gizle
     const againBtn = document.getElementById('try-again-btn');
     if (againBtn) againBtn.style.display = 'none';
   }
@@ -239,7 +231,7 @@
     if (el) el.style.display = 'none';
   }
 
-  function guessImageMime(base64) {
+  function guessImageMime(base64) { //Buna gerek yok Ama ilerde lazım olabilir
     // PNG: iVBORw0KGgo
     if (base64.startsWith('iVBOR')) return 'image/png';
     // JPEG: /9j/
@@ -253,7 +245,6 @@
   function showResult(resultImageBase64) {
     const resultImage = document.getElementById('result-image');
     if (resultImageBase64) {
-      // Her zaman PNG olarak göster
       if (!resultImageBase64.startsWith('data:image')) {
         resultImage.src = 'data:image/png;base64,' + resultImageBase64;
       } else {
@@ -268,7 +259,6 @@
     document.getElementById('products-section').style.display = 'none';
     document.getElementById('try-button').style.display = 'none';
 
-    // Tekrar Dene butonunu ekle (eğer yoksa)
     let againBtn = document.getElementById('try-again-btn');
     if (!againBtn) {
       againBtn = document.createElement('button');
@@ -370,7 +360,6 @@
     }
   }
 
-  // --- Global fonksiyonlar ---
   window.openVirtualTryOn = function() {
     createModal();
   };
@@ -378,7 +367,6 @@
     closeModal();
   };
 
-  // --- Sağ alt köşe butonu ---
   function createVirtualTryOnButton() {
     if (document.getElementById('virtual-tryon-btn')) return;
     const button = document.createElement('button');
@@ -404,10 +392,9 @@
     document.body.appendChild(button);
   }
 
-  // --- Sayfa yüklendiğinde butonu ekle ---
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', createVirtualTryOnButton);
   } else {
     createVirtualTryOnButton();
   }
-})();
+})(); 
