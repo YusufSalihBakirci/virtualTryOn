@@ -50,3 +50,45 @@ main {
 .card-body i.fas {
     font-size: 25px;
 }
+.btn-success {
+    background-color: #00D65F;
+    border-color: #00D65F;
+}
+.btn-success:hover {
+    background-color: #00B84D;
+    border-color: #00B84D;
+}
+
+input[type="text"],
+input[type="email"]
+{
+    border: none;
+    border-bottom: 2px solid #000000;
+    border-radius: 0;
+    background: transparent;
+    outline: none;
+    width: 100%;
+    padding: 1rem 0.4rem;
+}
+
+/* label animation */
+input[type="text"]:focus,
+input[type="email"]:focus {
+    outline: none;
+    box-shadow: none;
+    border-bottom: 2px solid #00B84D;
+}
+
+/* Placeholder animation */
+input[type="text"]::placeholder,
+input[type="email"]::placeholder {
+    transition: transform 0.2s ease-in-out;
+    transform: translate(0, 0) scale(1);
+    transform-origin: top left;
+}
+
+/* Placeholder onFocus */
+input[type="text"]:focus::placeholder,
+input[type="email"]:focus::placeholder {
+    transform: translate(-0.2rem, -0.8rem) scale(0.8);
+}

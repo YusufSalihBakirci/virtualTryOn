@@ -3,14 +3,14 @@ const slides = [
     src: "/TempImages/person1.jpg",
     text: "Ürün 1",
     subText: "Açıklama 1",
-    btnText: "Satın Al",
+    btnText: "İncele",
     btnColor: "primary",
   },
   {
     src: "/TempImages/person2.jpg",
     text: "Ürün 2",
     subText: "Açıklama 2",
-    btnText: "Detay",
+    btnText: "İncele",
     btnColor: "primary",
   },
   {
