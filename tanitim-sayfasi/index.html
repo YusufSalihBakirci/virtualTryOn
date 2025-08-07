@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VirtualTryOn</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="globals.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav
+      id="navbar"
+      class="navbar fixed-top navbar-expand-lg navbar-light bg-light shadow-sm page-load"
+    >
+      <div class="container">
+        <img
+          src="/TempImages/logo-textless.png"
+          alt="Logo"
+          class="navbar-brand"
+          style="width: 40px; height: 40px"
+        />
+        <a class="navbar-brand" href="#">VirtualTryOn</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item mx-1">
+              <a
+                class="nav-link btn btn-outline-primary"
+                aria-current="page"
+                href="#"
+                >Referanslarımız</a
+              >
+            </li>
+            <li class="nav-item mx-1 btn btn-outline-primary p-0">
+              <a class="nav-link" aria-current="page" href="#">Demo</a>
+            </li>
+            <li class="nav-item mx-1">
+              <a
+                class="nav-link btn btn-outline-primary"
+                aria-current="page"
+                href="#"
+                >İletişim</a
+              >
+            </li>
+            <li class="nav-item mx-1">
+              <a
+                class="nav-link btn btn-outline-primary"
+                aria-current="page"
+                href="#"
+                >Login</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Ana içerik -->
+    <main class="container py-4 mt-5 fade-in">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="swiper">
+            <!-- Sarmalayıcı -->
+            <div class="swiper-wrapper">
+              <!-- Fotoğraflar buraya gelecek -->
+              <div class="swiper-slide">Fotoğraf 1</div>
+              <div class="swiper-slide">Fotoğraf 2</div>
+              <div class="swiper-slide">Fotoğraf 3</div>
+              ...
+            </div>
+
+            <!-- ileri geri düğmesi -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- How it works -->
+    <div class="container slide-in-left">
+      <div class="row">
+        <div class="col-md-12">
+          <h2 class="hiw-title">Nasıl Çalışır?</h2>
+          <p>
+            Yapay zeka destekli sistemimiz, yüz hatlarınızı ve stil
+            tercihlerinizi analiz ederek mükemmel gözlüğü önerir.
+          </p>
+          <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+              <div class="card shadow-md card-scale stagger-item">
+                <div class="card-body">
+                  <!-- TODO : kütüphane değişecek -->
+                  <i class="fas fa-camera"></i>
+                  <h5 class="card-title mt-2 fw-bold">
+                    Google Feed Entegrasyonu
+                  </h5>
+                  <p class="card-text text-muted">
+                    Google Feed üzerinden elde edilen güncel moda trendleri,
+                    popüler ürünler ve kullanıcı ilgi alanları sistemimize
+                    entegre edilir. Böylece size en yeni ve en çok tercih edilen
+                    gözlük modelleri önerilir.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card shadow-md card-scale stagger-item">
+                <div class="card-body">
+                  <!-- TODO : kütüphane değişecek -->
+                  <i class="fas fa-ruler"></i>
+                  <h5 class="card-title mt-2 fw-bold">
+                    Gerçek Zamanlı Yüz Analizi
+                  </h5>
+                  <p class="card-text text-muted">
+                    Kameranızı kullanarak yüz hatlarınızı ve ölçülerinizi anlık
+                    olarak tarıyoruz. Gelişmiş görüntü işleme teknolojimiz
+                    sayesinde size en uygun çerçeve tipi, burun köprüsü
+                    yüksekliği ve gözlük boyutu belirlenir.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card shadow-md card-scale stagger-item">
+                <div class="card-body">
+                  <!-- TODO : kütüphane değişecek -->
+                  <i class="fas fa-wand-magic-sparkles"></i>
+                  <h5 class="card-title mt-2 fw-bold">
+                    Kişiselleştirilmiş Gözlük Tavsiyesi
+                  </h5>
+                  <p class="card-text text-muted">
+                    Yapay zeka, yüz şekliniz ve stilinize göre en uygun
+                    gözlükleri önerir. Size özel ve benzersiz bir kullanıcı
+                    deneyimi sunar.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Explore Our Collection -->
+    <div class="container mt-4 collection-container">
+      <h2 class="text-left mb-5 fw-bold">Koleksiyonumuzu Keşfedin</h2>
+      <div class="row g-2 text-center">
+        <div class="col-6 mb-3 mb-md-0 px-2 px-md-3">
+          <img
+            src="/TempImages/person3.jpg"
+            class="img-fluid w-100 w-md-75 rounded rounded-2 img-scale person-img"
+            style="height: 300px; max-height: 200px; object-fit: contain; object-position: center;"
+            alt="Person 1"
+          />
+        </div>
+        <div class="col-6 mb-3 mb-md-0 px-2 px-md-3">
+          <img
+            src="/TempImages/person2.jpg"
+            class="img-fluid w-100 w-md-75 rounded rounded-2 img-scale person-img"
+            style="height: 300px; max-height: 200px; object-fit: contain; object-position: center;"
+            alt="Person 2"
+          />
+        </div>
+      </div>
+      <div class="row g-2 mt-3 text-center">
+        <div class="col-6 px-2 px-md-3">
+          <img
+            src="/TempImages/glasses3.webp"
+            class="img-fluid w-100 w-md-75 rounded img-scale glasses-img"
+            style="height: 300px; max-height: 200px; object-fit: contain; object-position: center;"
+            alt="Glasses 1"
+          />
+        </div>
+        <div class="col-6 px-2 px-md-3">
+          <img
+            src="/TempImages/glasses2.webp"
+            class="img-fluid w-100 w-md-75 rounded img-scale glasses-img"
+            style="height: 300px; max-height: 200px; object-fit: contain; object-position: center;"
+            alt="Glasses 2"
+          />
+        </div>
+      </div>
+    </div>
+    <!-- Contact -->
+    <div class="container my-5">
+      <div class="card p-4 border-0">
+        <div class="row align-items-center">
+          <!-- Sol taraf -->
+          <div class="col-md-6 mb-4 mb-md-0">
+            <h2 class="mb-4 fw-bold text-left">İletişim</h2>
+            <img
+              src="/TempImages/logo.png"
+              alt="Logo"
+              class="img-fluid object-fit-cover w-50 h-50 my-5 d-block text-left"
+            />
+          </div>
+
+          <!-- Sağ taraf -->
+          <div class="col-md-6">
+            <form onsubmit="event.preventDefault()">
+              <div class="row mb-3 align-items-center">
+                <label for="isim" class="col-sm-2 col-form-label">İsim</label>
+                <div class="col-sm-10">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="isim"
+                    placeholder="Adınız"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="row mb-3 align-items-center">
+                <label for="soyisim" class="col-sm-2 col-form-label">Soyisim</label>
+                <div class="col-sm-10">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="soyisim"
+                    placeholder="Soyadınız"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="row mb-3 align-items-center">
+                <label for="email" class="col-sm-2 col-form-label">E-posta</label>
+                <div class="col-sm-10">
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    placeholder="email@ornek.com"
+                    required
+                  />
+                </div>
+              </div>
+              <button type="submit" class="btn btn-success w-100 p-3">Gönder</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer -->
+    <footer class="bg-light shadow-top text-dark text-center py-3 mt-5">
+      <small class="mb-0">2025 VirtualTryOn. Tüm hakları saklıdır.</small>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="app.js"></script>
+    <!-- Font Awesome -->
+    <script
+      src="https://kit.fontawesome.com/f2d63d7d73.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </body>
+</html>

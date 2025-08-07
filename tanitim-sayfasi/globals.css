@@ -1,0 +1,94 @@
+body {
+    font-family: "Manrope", sans-serif;
+}
+
+main {
+    padding-top: 4rem; /* space for fixed navbar */
+    padding-bottom: 2rem;
+}
+
+.shadow-top {
+    box-shadow: 0 -0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+#navbar {
+    transition: transform 0.3s ease-in-out;
+}
+.nav-hidden {
+    transform: translateY(-100%);
+}
+
+.btn-outline-primary {
+    border: none;
+}
+
+.btn-outline-primary:hover{
+    color: white;
+}
+
+.nav-item.btn.btn-outline-primary.p-0 .nav-link:hover {
+    color: white !important;
+}
+
+.hiw-title {
+    font-weight: bold;
+}
+.card-scale {
+    transition: transform 0.3s ease-in-out;
+    min-height: 200px;
+}
+.card-scale:hover {
+    transform: scale(1.03);
+}
+
+.img-scale {
+    transition: transform 0.3s ease-in-out;
+}
+.img-scale:hover {
+    transform: scale(1.05);
+}
+
+.card-body i.fas {
+    font-size: 25px;
+}
+.btn-success {
+    background-color: #00D65F;
+    border-color: #00D65F;
+}
+.btn-success:hover {
+    background-color: #00B84D;
+    border-color: #00B84D;
+}
+
+input[type="text"],
+input[type="email"]
+{
+    border: none;
+    border-bottom: 2px solid #000000;
+    border-radius: 0;
+    background: transparent;
+    outline: none;
+    width: 100%;
+    padding: 1rem 0.4rem;
+}
+
+/* label animation */
+input[type="text"]:focus,
+input[type="email"]:focus {
+    outline: none;
+    box-shadow: none;
+    border-bottom: 2px solid #00B84D;
+}
+
+/* Placeholder animation */
+input[type="text"]::placeholder,
+input[type="email"]::placeholder {
+    transition: transform 0.2s ease-in-out;
+    transform: translate(0, 0) scale(1);
+    transform-origin: top left;
+}
+
+/* Placeholder onFocus */
+input[type="text"]:focus::placeholder,
+input[type="email"]:focus::placeholder {
+    transform: translate(-0.2rem, -0.8rem) scale(0.8);
+}
