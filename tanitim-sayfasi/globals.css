@@ -3,16 +3,19 @@ body {
 }
 
 main {
-    padding-top: 4rem; /* space for fixed navbar */
+    padding-top: 4rem;
+    /* space for fixed navbar */
     padding-bottom: 2rem;
 }
 
 .shadow-top {
     box-shadow: 0 -0.125rem 0.25rem rgba(0, 0, 0, 0.075);
 }
+
 #navbar {
     transition: transform 0.3s ease-in-out;
 }
+
 .nav-hidden {
     transform: translateY(-100%);
 }
@@ -21,7 +24,7 @@ main {
     border: none;
 }
 
-.btn-outline-primary:hover{
+.btn-outline-primary:hover {
     color: white;
 }
 
@@ -32,10 +35,12 @@ main {
 .hiw-title {
     font-weight: bold;
 }
+
 .card-scale {
     transition: transform 0.3s ease-in-out;
     min-height: 200px;
 }
+
 .card-scale:hover {
     transform: scale(1.03);
 }
@@ -43,6 +48,7 @@ main {
 .img-scale {
     transition: transform 0.3s ease-in-out;
 }
+
 .img-scale:hover {
     transform: scale(1.05);
 }
@@ -50,18 +56,19 @@ main {
 .card-body i.fas {
     font-size: 25px;
 }
+
 .btn-success {
     background-color: #00D65F;
     border-color: #00D65F;
 }
+
 .btn-success:hover {
     background-color: #00B84D;
     border-color: #00B84D;
 }
 
 input[type="text"],
-input[type="email"]
-{
+input[type="email"] {
     border: none;
     border-bottom: 2px solid #000000;
     border-radius: 0;
@@ -91,4 +98,150 @@ input[type="email"]::placeholder {
 input[type="text"]:focus::placeholder,
 input[type="email"]:focus::placeholder {
     transform: translate(-0.2rem, -0.8rem) scale(0.8);
+}
+
+/* Koleksiyon görselleri */
+.collection-main-img {
+        height: 300px;
+        object-fit: contain;
+        width: 100%;
+      }
+      .thumb-img {
+        height: 90px;
+        object-fit: contain;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      .thumb-img.active {
+        outline: 3px solid #0d6efd;
+      }
+      .thumb-img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.35);
+      }
+      .selected-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f8f9fa;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        min-height: 300px;
+      }
+
+/* Modal Tasarımları */
+#slideModal .modal-content {
+    border-radius: 1rem !important;
+    backdrop-filter: blur(10px) !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: none !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2) !important;
+}
+
+#slideModal .modal-header {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%) !important;
+    border-radius: 1rem 1rem 0 0 !important;
+    border-bottom: none !important;
+}
+
+#slideModal .modal-body {
+    border-radius: 0 0 1rem 1rem !important;
+}
+
+#slideModal .modal-title {
+    color: #2c3e50 !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.5px !important;
+}
+
+/* Modal Ana Görsel */
+#slideModal #modalMainImg {
+    transition: all 0.3s ease !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+    border: 3px solid #007bff !important;
+    max-height: 180px !important;
+}
+
+#slideModal #modalMainImg:hover {
+    transform: scale(1.02) !important;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Modal Kartları */
+#slideModal .modal-body .card {
+    transition: all 0.3s ease !important;
+    background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%) !important;
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    border-radius: 0.75rem !important;
+}
+
+#slideModal .modal-body .card:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+}
+
+#slideModal .modal-body .card-header {
+    background: linear-gradient(135deg, #ffffff 0%, #f1f3f4 100%) !important;
+    border-bottom: 2px solid #e9ecef !important;
+    border-radius: 0.75rem 0.75rem 0 0 !important;
+}
+
+/* Modal İkonları */
+#slideModal .modal-body .fas {
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1)) !important;
+}
+
+/* Alert Kutusu */
+#slideModal .alert-info {
+    background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%) !important;
+    border-left: 4px solid #17a2b8 !important;
+    animation: slideInUp 0.5s ease-out !important;
+    border-radius: 0.5rem !important;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Modal Animasyonu */
+#slideModal.fade .modal-dialog {
+    transition: transform 0.3s ease-out !important;
+    transform: scale(0.8) !important;
+}
+
+#slideModal.show .modal-dialog {
+    transform: scale(1) !important;
+}
+
+.modal-footer .btn-success {
+    background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+    border: none;
+}
+
+.modal-footer .btn-outline-secondary {
+    border: 2px solid #6c757d;
+    color: #6c757d;
+    background: transparent;
+}
+
+.modal-footer .btn-outline-secondary:hover {
+    background: #6c757d;
+    color: white;
+}
+
+Modal Animasyonu .modal.fade .modal-dialog {
+    transition: transform 0.3s ease-out;
+    transform: scale(0.8);
+}
+
+.modal.show .modal-dialog {
+    transform: scale(1);
 }

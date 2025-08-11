@@ -167,44 +167,79 @@
 
     <!-- Explore Our Collection -->
     <div class="container mt-4 collection-container">
-      <h2 class="text-left mb-5 fw-bold">Koleksiyonumuzu Keşfedin</h2>
-      <div class="row g-2 text-center">
-        <div class="col-6 mb-3 mb-md-0 px-2 px-md-3">
-          <img
-            src="/TempImages/person3.jpg"
-            class="img-fluid w-100 w-md-75 rounded rounded-2 img-scale person-img"
-            style="height: 300px; max-height: 200px; object-fit: contain; object-position: center;"
-            alt="Person 1"
-          />
+      <h2 class="text-left mb-4 fw-bold">Koleksiyonumuzu Keşfedin</h2>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="fw-semibold mb-3">İnsan Seç</h5>
+              <div class="selected-wrapper mb-3">
+                <img
+                  id="selectedPerson"
+                  class="img-fluid collection-main-img rounded d-none"
+                  alt="Seçili İnsan"
+                />
+              </div>
+              <div class="row g-2" id="personThumbs">
+                <!-- küçük insan görselleri JS ile doldurulacak -->
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="col-6 mb-3 mb-md-0 px-2 px-md-3">
-          <img
-            src="/TempImages/person2.jpg"
-            class="img-fluid w-100 w-md-75 rounded rounded-2 img-scale person-img"
-            style="height: 300px; max-height: 200px; object-fit: contain; object-position: center;"
-            alt="Person 2"
-          />
+        <div class="col-md-6">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="fw-semibold mb-3">Gözlük Seç</h5>
+              <div class="selected-wrapper mb-3">
+                <img
+                  id="selectedGlasses"
+                  class="img-fluid collection-main-img rounded d-none"
+                  alt="Seçili Gözlük"
+                />
+              </div>
+              <div class="row g-2" id="glassesThumbs">
+                <!-- küçük gözlük görselleri JS ile doldurulacak -->
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="row g-2 mt-3 text-center">
-        <div class="col-6 px-2 px-md-3">
-          <img
-            src="/TempImages/glasses3.webp"
-            class="img-fluid w-100 w-md-75 rounded img-scale glasses-img"
-            style="height: 300px; max-height: 200px; object-fit: contain; object-position: center;"
-            alt="Glasses 1"
-          />
-        </div>
-        <div class="col-6 px-2 px-md-3">
-          <img
-            src="/TempImages/glasses2.webp"
-            class="img-fluid w-100 w-md-75 rounded img-scale glasses-img"
-            style="height: 300px; max-height: 200px; object-fit: contain; object-position: center;"
-            alt="Glasses 2"
-          />
+      <div class="row g-4 mt-3" id="resultRow" style="display:none;">
+        <div class="col-12">
+          <div class="card border-0 shadow-sm">
+            <div class="card-body">
+              <h5 class="fw-semibold mb-3">Önizleme</h5>
+              <div class="selected-wrapper mb-3">
+                <img
+                  id="resultImage"
+                  src="/TempImages/filtered-person.jpg"
+                  class="img-fluid collection-main-img rounded"
+                  alt="Önizleme"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+
+    <!-- Ready To Find -->
+    <div class="container mt-4">
+      <div class="row g-2">
+        <div class="col-md-12">
+          <h2 class="fw-bold mb-5">Aradığınızı Bulmaya Hazır mısınız?</h2>
+          <!-- Yeni Swiper sarmalayıcısı  -->
+          <div class="swiper ready-swiper">
+            <div class="ready-to-find-wrapper swiper-wrapper">
+              <!-- Fotoğraflar buraya gelecek -->
+            </div>
+            <div class="swiper-button-next ready-next"></div>
+            <div class="swiper-button-prev ready-prev"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Contact -->
     <div class="container my-5">
       <div class="card p-4 border-0">
@@ -264,6 +299,108 @@
         </div>
       </div>
     </div>
+
+    <!-- Swiper Kişilerin Detay Modalı -->
+    <div
+      class="modal fade"
+      id="slideModal"
+      tabindex="-1"
+      aria-labelledby="slideModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-xl" style="max-width: 1000px">
+        <div class="modal-content border-0 shadow-lg">
+          <div class="modal-header bg-light border-0 px-4 py-3">
+            <h4 class="modal-title fw-bold text-dark" id="slideModalLabel">
+              <i class="fas fa-glasses me-2 text-primary"></i>Sanal Deneme
+            </h4>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body p-3">
+            <!-- Ana Görsel Bölümü -->
+            <div class="text-center mb-3">
+              <div class="position-relative d-inline-block">
+                <img
+                  id="modalMainImg"
+                  src=""
+                  alt="Ana Görsel"
+                  class="img-fluid rounded-3 shadow-sm"
+                  style="
+                    max-height: 180px;
+                    object-fit: contain;
+                    border: 3px solid #f8f9fa;
+                  "
+                />
+              </div>
+            </div>
+
+            <!-- Detay Kartları -->
+            <div class="row g-4">
+              <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm bg-light">
+                  <div
+                    class="card-header bg-transparent border-0 text-center py-3"
+                  >
+                    <h6 class="fw-bold mb-0 text-dark">
+                      <i class="fas fa-user me-2 text-info"></i>Kişi
+                    </h6>
+                  </div>
+                  <div class="card-body text-center p-3 pb-4">
+                    <img
+                      id="modalPersonImg"
+                      src=""
+                      alt="Kişi"
+                      class="img-fluid p-2 rounded-3 w-100 shadow-sm"
+                      style="height: 150px; object-fit: contain"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card h-100 border-0 shadow-sm bg-light">
+                  <div
+                    class="card-header bg-transparent border-0 text-center py-3"
+                  >
+                    <h6 class="fw-bold mb-0 text-dark">
+                      <i class="fas fa-glasses me-2 text-warning"></i>Gözlük
+                    </h6>
+                  </div>
+                  <div class="card-body text-center p-3 pb-4">
+                    <img
+                      id="modalGlassesImg"
+                      src=""
+                      alt="Gözlük"
+                      class="img-fluid p-2 rounded-3 w-100 shadow-sm"
+                      style="height: 150px; object-fit: contain"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bilgi Kutusu BELKİ KALDIRILABİLİR. -->
+            <div class="alert alert-info border-0 mt-3 bg-light">
+              <div class="d-flex align-items-center">
+                <i class="fas fa-info-circle text-primary me-3 fs-5"></i>
+                <div>
+                  <h6 class="mb-1 fw-bold">Yapay Zeka Desteği</h6>
+                  <small class="text-muted"
+                    >Bu kombinasyon yüz hatlarınıza uygun olarak
+                    önerilmiştir.</small
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Footer -->
     <footer class="bg-light shadow-top text-dark text-center py-3 mt-5">
       <small class="mb-0">2025 VirtualTryOn. Tüm hakları saklıdır.</small>
