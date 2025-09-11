@@ -1,20 +1,20 @@
 const slides = [
   {
-    src: "/TempImages/person1.jpg",
+    src: "../TempImages/person1.jpg",
     text: "Ürün 1",
     subText: "Açıklama 1",
     btnText: "İncele",
     btnColor: "primary",
   },
   {
-    src: "/TempImages/person2.jpg",
+    src: "../TempImages/person2.jpg",
     text: "Ürün 2",
     subText: "Açıklama 2",
     btnText: "İncele",
     btnColor: "primary",
   },
   {
-    src: "/TempImages/person3.jpg",
+    src: "../TempImages/person3.jpg",
     text: "Ürün 3",
     subText: "Açıklama 3",
     btnText: "İncele",
@@ -25,25 +25,25 @@ const slides = [
 const readySlides = [
   {
     id: 1,
-    mainImg: "/TempImages/filtered-person1.jpg",
-    personImg: "/TempImages/person2.jpg",
-    glassesImg: "/TempImages/glasses4.webp",
+    mainImg: "../TempImages/filtered-person1.jpg",
+    personImg: "../TempImages/person2.jpg",
+    glassesImg: "../TempImages/glasses4.webp",
     alt: "Kişi 1 ama filtreli",
     label: "Kişi 1",
   },
   {
     id: 1,
     mainImg: "Elimizde Yok",
-    personImg: "/TempImages/person1.jpg",
-    glassesImg: "/TempImages/glasses2.webp",
+    personImg: "../TempImages/person1.jpg",
+    glassesImg: "../TempImages/glasses2.webp",
     alt: "Kişi 2 ama filtreli",
     label: "Kişi 2",
   },
   {
     id: 1,
     mainImg: "Elimizde Yok",
-    personImg: "/TempImages/person3.jpg",
-    glassesImg: "/TempImages/glasses3.webp",
+    personImg: "../TempImages/person3.jpg",
+    glassesImg: "../TempImages/glasses3.webp",
     alt: "Kişi 3 ama filtreli",
     label: "Kişi 3",
   },
@@ -153,16 +153,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Kişi verileri
   const personImages = [
-    { id: 1, src: "/TempImages/person1.jpg", label: "Person 1" },
-    { id: 2, src: "/TempImages/person2.jpg", label: "Person 2" },
-    { id: 3, src: "/TempImages/person3.jpg", label: "Person 3" },
+    { id: 1, src: "../TempImages/person1.jpg", label: "Person 1" },
+    { id: 2, src: "../TempImages/person2.jpg", label: "Person 2" },
+    { id: 3, src: "../TempImages/person3.jpg", label: "Person 3" },
   ];
   // Gözlük verileri
   const glassesImages = [
-    { id: 1, src: "/TempImages/glasses1.webp", label: "Glasses 1" },
-    { id: 2, src: "/TempImages/glasses2.webp", label: "Glasses 2" },
-    { id: 3, src: "/TempImages/glasses3.webp", label: "Glasses 3" },
-    { id: 4, src: "/TempImages/glasses4.webp", label: "Glasses 4" },
+    { id: 1, src: "../TempImages/glasses1.webp", label: "Glasses 1" },
+    { id: 2, src: "../TempImages/glasses2.webp", label: "Glasses 2" },
+    { id: 3, src: "../TempImages/glasses3.webp", label: "Glasses 3" },
+    { id: 4, src: "../TempImages/glasses4.webp", label: "Glasses 4" },
   ];
 
   const personThumbs = document.getElementById("personThumbs");
@@ -183,7 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function maybeShowResult() {
     if (chosenPerson && chosenGlasses) {
       resultRow.style.display = "flex";
-      resultImage.src = "/TempImages/filtered-person1.jpg"; // placeholder
+      resultImage.src = "../TempImages/filtered-person1.jpg"; // placeholder
     } else {
       resultRow.style.display = "none";
     }
