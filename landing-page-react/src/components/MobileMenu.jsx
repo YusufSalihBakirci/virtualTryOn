@@ -1,11 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const MobileMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  const toggleMenu = () => setIsOpen((o) => !o);
 
   const menuItems = [
     { label: "Ana Sayfa", href: "/" },
@@ -15,10 +12,33 @@ const MobileMenu = () => {
     { label: "Login", href: "/login" },
   ];
 
+  // Dışarı tıklayınca kapanma
+  const dropdownRef = useRef(null);
+  const headerRef = useRef(null);
+  useEffect(() => {
+    const handleDocClick = (e) => {
+      if (!isOpen) return;
+      const dropdownEl = dropdownRef.current;
+      const headerEl = headerRef.current;
+      if (
+        (dropdownEl && dropdownEl.contains(e.target)) ||
+        (headerEl && headerEl.contains(e.target))
+      ) {
+        return; // içeride tıklama
+      }
+      setIsOpen(false);
+    };
+    document.addEventListener("click", handleDocClick);
+    return () => document.removeEventListener("click", handleDocClick);
+  }, [isOpen]);
+
   return (
     <>
       {/* Header */}
-      <div className="absolute top-0 left-0 w-full flex items-center justify-between p-4 z-50">
+      <div
+        ref={headerRef}
+        className="fixed top-2 left-0 w-full flex items-center backdrop-blur-md rounded-full border border-white/25 justify-between px-4 py-3 z-50"
+      >
         {/* Logo */}
         <div className="flex items-center">
           <img
@@ -27,12 +47,11 @@ const MobileMenu = () => {
             className="h-8 w-auto"
           />
         </div>
-
         {/* Hamburger Menu Button */}
         <button
           onClick={toggleMenu}
-          className="flex flex-col items-center justify-center w-8 h-8 space-y-1 focus:outline-none"
-          aria-label="Toggle menu"
+          className="flex flex-col items-center justify-center w-9 h-9 space-y-1 focus:outline-none"
+          aria-label={isOpen ? "Menüyü kapat" : "Menüyü aç"}
         >
           <span
             className={`block w-6 h-0.5 bg-white transition-all duration-300 ${
@@ -52,18 +71,21 @@ const MobileMenu = () => {
         </button>
       </div>
 
-      {/* Mobile Menu Overlay */}
-      <div
-        className={`fixed inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-blue-900 z-40 transition-transform duration-300 ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
-        <div className="flex flex-col items-center justify-center h-full space-y-8 p-8">
+      {/* Dropdown Menü (Header altı) */}
+      <div className="fixed top-[72px] left-0 w-full flex justify-center z-40">
+        <div
+          ref={dropdownRef}
+          className={`w-[90%] max-w-sm rounded-2xl bg-gradient-to-br from-indigo850 via-purple-900 to-blue-950 backdrop-blur-xl border border-white/15 px-6 py-8 flex flex-col items-center gap-6 shadow-lg shadow-black/30 transition-all duration-300 origin-top ${
+            isOpen
+              ? "opacity-100 scale-100 translate-y-0"
+              : "opacity-0 scale-95 -translate-y-2 pointer-events-none"
+          }`}
+        >
           {menuItems.map((item, index) => (
             <a
               key={index}
               href={item.href}
-              className="text-white text-2xl font-semibold hover:text-purple-300 transition-colors duration-200"
+              className="text-white text-lg font-medium tracking-wide hover:text-purple-300 transition-colors duration-200"
               onClick={() => setIsOpen(false)}
             >
               {item.label}
@@ -71,14 +93,6 @@ const MobileMenu = () => {
           ))}
         </div>
       </div>
-
-      {/* Background overlay when menu is open */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-30"
-          onClick={() => setIsOpen(false)}
-        />
-      )}
     </>
   );
 };
