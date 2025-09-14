@@ -7,7 +7,7 @@ import AnimatedContent from "./AnimatedContent";
 
 const HowItWorks = () => {
   return (
-    <div className="relative z-30">
+    <div className="relative z-30 -mb-16 sm:-mb-24 md:-mb-32">
           <AnimatedContent
               duration={1.2}
           >
@@ -31,7 +31,7 @@ const HowItWorks = () => {
         baseScale={0.85}
         itemScale={0.04}
       >
-        <ScrollStackItem itemClassName="bg-transparent text-white flex items-center justify-center h-[70vh] text-4xl font-bold backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl">
+  <ScrollStackItem itemClassName="bg-transparent text-white flex items-center justify-center h-[60vh] md:h-[70vh] text-4xl font-bold backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl">
           <div className="w-full max-w-xl mx-auto px-4 md:px-6 text-left">
             <h2 className="flex items-center gap-4 text-xl md:text-3xl lg:text-4xl font-extrabold mb-4">
               <span className="text-xl md:text-3xl lg:text-4xl">
@@ -49,7 +49,7 @@ const HowItWorks = () => {
             </p>
           </div>
         </ScrollStackItem>
-        <ScrollStackItem itemClassName="bg-transparent text-white flex items-center justify-center h-[70vh] text-4xl font-bold backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl">
+  <ScrollStackItem itemClassName="bg-transparent text-white flex items-center justify-center h-[60vh] md:h-[70vh] text-4xl font-bold backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl">
           <div className="w-full max-w-xl mx-auto px-4 md:px-6 text-left">
             <h2 className="flex items-center gap-4 text-xl md:text-3xl lg:text-4xl font-extrabold mb-4">
               <span className="text-xl md:text-3xl lg:text-4xl">
@@ -65,7 +65,7 @@ const HowItWorks = () => {
             </p>
           </div>
         </ScrollStackItem>
-        <ScrollStackItem itemClassName="bg-transparent text-white flex items-center justify-center h-[70vh] text-4xl font-bold backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl">
+  <ScrollStackItem itemClassName="bg-transparent text-white flex items-center justify-center h-[60vh] md:h-[70vh] text-4xl font-bold backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl">
           <div className="w-full max-w-xl mx-auto px-4 md:px-6 text-left">
             <h2 className="flex items-center gap-4 text-xl md:text-3xl lg:text-4xl font-extrabold mb-4">
               <span className="text-xl md:text-3xl lg:text-4xl">
