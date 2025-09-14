@@ -29,7 +29,7 @@ export default function ExploreCollection() {
       animateOpacity
       delay={0.5}
     >
-      <section className="relative z-40 pt-24 mt-12 sm:mt-16 md:mt-24 lg:mt-28">
+      <section className="relative z-40 py-24 mt-12 sm:mt-16 md:mt-24 lg:mt-28">
         <div className="max-w-6xl mx-auto px-3 sm:px-4">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight mb-4 sm:mb-6">
             Koleksiyonumuzu Keşfedin
@@ -45,7 +45,7 @@ export default function ExploreCollection() {
                   <img
                     src={chosenPerson.src}
                     alt={chosenPerson.label}
-                    className="w-full rounded-lg object-cover max-h-80 sm:max-h-96"
+                    className="w-full rounded-lg object-cover h-80 sm:h-96"
                   />
                 </div>
               )}
@@ -55,7 +55,7 @@ export default function ExploreCollection() {
                     key={p.id}
                     src={p.src}
                     alt={p.label}
-                    className={`cursor-pointer rounded-lg border transition-colors ${
+                    className={`cursor-pointer rounded-lg border transition-colors object-cover w-full h-24 sm:h-32 ${
                       chosenPerson?.id === p.id
                         ? "border-blue-400"
                         : "border-transparent"
@@ -74,7 +74,7 @@ export default function ExploreCollection() {
                   <img
                     src={chosenGlasses.src}
                     alt={chosenGlasses.label}
-                    className="w-full rounded-lg object-contain max-h-48 sm:max-h-64 bg-black/20"
+                    className="w-full rounded-lg object-cover h-48 sm:h-64 bg-black/20"
                   />
                 </div>
               )}
@@ -84,7 +84,7 @@ export default function ExploreCollection() {
                     key={g.id}
                     src={g.src}
                     alt={g.label}
-                    className={`cursor-pointer rounded-lg border transition-colors ${
+                    className={`cursor-pointer rounded-lg border transition-colors object-cover w-full h-20 sm:h-24 ${
                       chosenGlasses?.id === g.id
                         ? "border-blue-400"
                         : "border-transparent"
@@ -115,7 +115,7 @@ export default function ExploreCollection() {
                   <img
                     src="/TempImages/filtered-person1.jpg"
                     alt="Önizleme"
-                    className="rounded-lg max-h-72 sm:max-h-96 object-contain"
+                    className="rounded-lg h-72 sm:h-96 w-auto object-cover"
                   />
                 </div>
               </div>

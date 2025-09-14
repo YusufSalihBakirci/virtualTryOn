@@ -8,29 +8,40 @@ import Particles from "./components/Particles";
 import HeroSection from "./components/HeroSecion";
 import ExploreCollection from "./components/ExploreCollection";
 import Footer from "./components/Footer";
-
+import ReadyToFind from "./components/ReadyToFind";
+import Contact from "./components/Contact";
 
 
 const App = () => {
   useEffect(() => {
+    //  Sayfa ilk yüklendiğinde en üste kaydır
     if (typeof window !== "undefined") {
-      const setTop = () => {
-        if (typeof document !== "undefined") {
-          if (typeof document.documentElement.scrollTop !== "undefined") {
-            document.documentElement.scrollTop = 0;
-          }
-          if (document.body && typeof document.body.scrollTop !== "undefined") {
-            document.body.scrollTop = 0;
-          }
-        }
-        if (typeof window.scrollTo === "function") {
-          window.scrollTo(0, 0);
-        }
-      };
+      const isInitialLoad = !window.hasLoadedBefore;
 
-      setTop();
-      window.requestAnimationFrame(() => setTop());
-      setTimeout(() => setTop(), 100);
+      if (isInitialLoad) {
+        window.hasLoadedBefore = true;
+
+        const setTop = () => {
+          if (typeof document !== "undefined") {
+            if (typeof document.documentElement.scrollTop !== "undefined") {
+              document.documentElement.scrollTop = 0;
+            }
+            if (
+              document.body &&
+              typeof document.body.scrollTop !== "undefined"
+            ) {
+              document.body.scrollTop = 0;
+            }
+          }
+          if (typeof window.scrollTo === "function") {
+            window.scrollTo(0, 0);
+          }
+        };
+
+        setTop();
+        window.requestAnimationFrame(() => setTop());
+        setTimeout(() => setTop(), 100);
+      }
     }
   }, []);
   return (
@@ -69,8 +80,12 @@ const App = () => {
         <HowItWorks />
         {/* Explore Collection Section */}
         <ExploreCollection />
-
       </div>
+
+      {/* Ready To Find */}
+      <ReadyToFind />
+      {/* Contact */}
+      <Contact />
 
       {/* Footer */}
       <Footer />

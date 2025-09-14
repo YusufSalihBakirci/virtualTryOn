@@ -118,4 +118,16 @@
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* Scroll prevention classes with high specificity */
+  body.scroll-locked,
+  html.scroll-locked {
+    overflow: hidden !important;
+    height: 100% !important;
+  }
+  
+  /* Ensure dialog portals don't interfere */
+  [data-radix-portal] {
+    z-index: 9999 !important;
+  }
 }

@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef, useCallback } from "react";
 import Lenis from "lenis";
+import { setGlobalLenis } from "../utils/lenisUtils";
 
 export const ScrollStackItem = ({ children, itemClassName = "" }) => (
   // responsive card: near-full width on mobile, narrower on larger screens; auto height and reduced padding on small viewports
@@ -234,6 +235,10 @@ const ScrollStack = ({
       animationFrameRef.current = requestAnimationFrame(raf);
 
       lenisRef.current = lenis;
+
+      // Set global Lenis instance for external access (only for window scroll)
+      setGlobalLenis(lenis);
+
       return lenis;
     } else {
       const scroller = scrollerRef.current;
@@ -309,6 +314,10 @@ const ScrollStack = ({
       }
       if (lenisRef.current) {
         lenisRef.current.destroy();
+        // Clear global instance if this was the window scroll instance
+        if (useWindowScroll) {
+          setGlobalLenis(null);
+        }
       }
       stackCompletedRef.current = false;
       cardsRef.current = [];
